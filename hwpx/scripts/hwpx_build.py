@@ -341,7 +341,10 @@ class HwpxDoc:
             f'borderFillIDRef="2" noAdjust="0">'
             f'<hp:sz width="{BODY_WIDTH}" widthRelTo="ABSOLUTE" height="{total_h}" '
             f'heightRelTo="ABSOLUTE" protect="0"/>'
-            f'<hp:pos treatAsChar="1" affectLSpacing="0" flowWithText="1" '
+            # treatAsChar="1"(글자처럼 취급)로 두면 표가 한 문단 안에 갇혀
+            # 쪽을 넘기지 못하고 넘친 행이 통째로 사라진다(실측: 121행 표에서
+            # 63행 소실). 표준 샘플(KS X 6101 10.9.3.1)도 "0"을 쓴다.
+            f'<hp:pos treatAsChar="0" affectLSpacing="0" flowWithText="1" '
             f'allowOverlap="0" holdAnchorAndSO="0" vertRelTo="PARA" horzRelTo="COLUMN" '
             f'vertAlign="TOP" horzAlign="LEFT" vertOffset="0" horzOffset="0"/>'
             f'<hp:outMargin left="0" right="0" top="0" bottom="0"/>'
